@@ -21,6 +21,12 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
   
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
+  end
+  
   # list_params内では保存したいデータの絞り込みが行われている
   # privateは一種の境界線。Controllerファイルの一番下のendのすぐ上に書く
   private
