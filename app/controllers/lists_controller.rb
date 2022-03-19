@@ -27,11 +27,17 @@ class ListsController < ApplicationController
     redirect_to list_path(list.id)
   end
   
+  def destroy
+    list = List.find(params[:id])
+    list.destroy
+    redirect_to '/lists'
+  end
+  
   # list_params内では保存したいデータの絞り込みが行われている
   # privateは一種の境界線。Controllerファイルの一番下のendのすぐ上に書く
   private
   def list_params
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
   end
   
 end
